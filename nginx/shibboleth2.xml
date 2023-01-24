@@ -11,7 +11,7 @@
     -->
     <RequestMapper type="XML">
     <RequestMap>
-        <Host name="nii-rcos-invenio.lifematics.link"
+        <Host name="weko-test3.cs.rcos.nii.ac.jp"
                 authType="shibboleth"
                 requireSession="true"
                 redirectToSSL="443">
