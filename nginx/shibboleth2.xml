@@ -23,7 +23,7 @@
     </RequestMapper>
 
     <!-- The ApplicationDefaults element is where most of Shibboleth's SAML bits are defined. -->
-    <ApplicationDefaults entityID="https://idp.rdm.nii.ac.jp/"
+    <ApplicationDefaults entityID="https://weko-test3.cs.rcos.nii.ac.jp/shibboleth-sp"
         REMOTE_USER="eppn persistent-id targeted-id"
         cipherSuites="DEFAULT:!EXP:!LOW:!aNULL:!eNULL:!DES:!IDEA:!SEED:!RC4:!3DES:!kRSA:!SSLv2:!SSLv3:!TLSv1:!TLSv1.1">
 
