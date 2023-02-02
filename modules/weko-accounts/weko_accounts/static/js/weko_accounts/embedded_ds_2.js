@@ -1461,12 +1461,18 @@ var wayf_idps = {
         search: ["https://idp.kurume-it.ac.jp/idp/shibboleth", "Kyushu", "Kurume Institute of Technology", "Kurume Institute of Technology", "久留米工業大学"],
         SAML1SSOurl: "https://idp.kurume-it.ac.jp/idp/profile/Shibboleth/SSO"
     },
-    "https://idp.gakunin.nii.ac.jp/idp/shibboleth": {
-        type: "others",
-        name: "GakuNin IdP",
-        search: ["https://idp.gakunin.nii.ac.jp/idp/shibboleth", "Others", "GakuNin IdP", "GakuNin IdP", "学認IdP"],
-        SAML1SSOurl: "https://idp.gakunin.nii.ac.jp/idp/profile/Shibboleth/SSO"
-    }
+  "https://idp.gakunin.nii.ac.jp/idp/shibboleth": {
+    type: "others",
+    name: "GakuNin IdP",
+    search: ["https://idp.gakunin.nii.ac.jp/idp/shibboleth", "Others", "GakuNin IdP", "GakuNin IdP", "学認IdP"],
+    SAML1SSOurl: "https://idp.gakunin.nii.ac.jp/idp/profile/Shibboleth/SSO"
+  },
+  "https://idp.rdm.nii.ac.jp/idp/shibboleth": {
+    type: "others",
+    name: "GakuNin RDM IdP",
+    search: ["https://idp.rdm.nii.ac.jp/idp/shibboleth", "Others", "GakuNin RDM IdP", "GakuNin RDM IdP", "学認RDM IdP"],
+    SAML1SSOurl: "https://idp.rdm.nii.ac.jp/idp/profile/Shibboleth/SSO"
+  }
 };
 var wayf_hint_list = [];
 var inc_search_list = [];
