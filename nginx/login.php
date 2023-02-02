@@ -11,7 +11,7 @@ $base = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
 //  //header("Location: ".$base);
 //}else{
 //$url = $base . "/weko/shib/login?next=%2F";
-$url = "https://weko_nginx_1/weko/shib/login?next=%2F";
+$url = $_SERVER['REQUEST_SCHEME'] . "://localhost/weko/shib/login?next=%2F";
 $curl = curl_init();
 $post_args = [];
 $post_args['SHIB_ATTR_USER_NAME'] = $_SERVER['HTTP_EPPN'];
