@@ -1521,11 +1521,11 @@ var wayf_overwrite_submit_button_text = "ログイン";
 var wayf_overwrite_checkbox_label_text = "ブラウザ起動中は自動ログイン";
 
 var wayf_URL = "https://ds.gakunin.nii.ac.jp/WAYF";
-var sp_domain = "https://idp.repo.nii.ac.jp";
+var sp_domain = "https://weko-test3.cs.rcos.nii.ac.jp";
 var wayf_sp_entityID = sp_domain + "/shibboleth-sp";
 var wayf_sp_handlerURL = sp_domain + "/Shibboleth.sso";
 var wayf_return_url = sp_domain + "/loginproxy/getAuthInfo";
-var wayf_discofeed_url = "https://ds.gakunin.nii.ac.jp/DiscoFeed/PS0054JP"; 
+var wayf_discofeed_url = "https://ds.gakunin.nii.ac.jp/DiscoFeed/PS0054JP";
 var wayf_width = "390";
 var wayf_background_color = '#F8F8FF';
 var wayf_font_color = '#000080';
