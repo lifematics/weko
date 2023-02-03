@@ -7,6 +7,7 @@ if (!$_SERVER['Remote-User'] || !$_SERVER['mail'] || !$_SERVER['Shib-Session-ID'
     echo "<script type='text/javascript'>";
     echo "window.alert('Permission is invalid');";
     echo "window.location.href='" . $base . "';</script>";
+    exit;
 }
 $url = $_SERVER['REQUEST_SCHEME'] . "://localhost/weko/shib/login?next=%2F"; // Call the WEKO login API.
 $curl = curl_init();
