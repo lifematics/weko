@@ -2,30 +2,23 @@
 
 $base = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'];
 
-// ERROR
-//if(!$_SERVER['HTTP_WEKOSOCIETYAFFILIATION']){
-//  echo "<script type='text/javascript'>
-//  window.alert('Permission is invalid');
-//  window.location.href='".$base."';</script>";
-//  //header("HTTP/1.1 403 Forbidden");
-//  //header("Location: ".$base);
-//}else{
-//$url = $base . "/weko/shib/login?next=%2F";
-$url = $_SERVER['REQUEST_SCHEME'] . "://localhost/weko/shib/login?next=%2F";
+// ERROR (Checking some required parameters)
+if (!$_SERVER['Remote-User'] || !$_SERVER['mail'] || !$_SERVER['Shib-Session-ID'] || !$_SERVER['eppn']) {
+    echo "<script type='text/javascript'>";
+    echo "window.alert('Permission is invalid');";
+    echo "window.location.href='" . $base . "';</script>";
+}
+$url = $_SERVER['REQUEST_SCHEME'] . "://localhost/weko/shib/login?next=%2F"; // Call the WEKO login API.
 $curl = curl_init();
 $post_args = [];
-$post_args['SHIB_ATTR_USER_NAME'] = $_SERVER['HTTP_EPPN'];
-//$post_args['SHIB_ATTR_USER_NAME']=$_SERVER['HTTP_WEKOID'];
-$post_args["SHIB_ATTR_EPPN"] = $_SERVER['Remote-User'];
+$post_args['SHIB_ATTR_USER_NAME'] = $_SERVER['Remote-User'];
+$post_args["SHIB_ATTR_EPPN"] = $_SERVER['eppn'];
 $post_args["SHIB_ATTR_MAIL"] = $_SERVER['mail'];
 $post_args["SHIB_ATTR_SESSION_ID"] = $_SERVER['Shib-Session-ID'];
-$post_args["SHIB_ATTR_ROLE_AUTHORITY_NAME"] = 'Contributor';
-//$post_args["SHIB_ATTR_ROLE_AUTHORITY_NAME"]=$_SERVER['HTTP_WEKOSOCIETYAFFILIATION'];
+$post_args["SHIB_ATTR_ROLE_AUTHORITY_NAME"] = $_SERVER['eduPersonAffiliation'] ?? 'Contributor';
 $options = array(
-    //Method
-    CURLOPT_POST => true,//POST
-    //body
-    CURLOPT_POSTFIELDS => http_build_query($post_args),
+    CURLOPT_POST => true,// Method is POST
+    CURLOPT_POSTFIELDS => http_build_query($post_args), // Building body data
 );
 $cookie = tempnam(sys_get_temp_dir(), 'cookie_');
 //set options
@@ -48,6 +41,3 @@ if (CURLE_OK !== $errno) {
 }
 header("HTTP/1.1 302 Found");
 header("Location: " . $base . $result);
-//var_dump($app_cookies[0]['value']);
-//}
-?>

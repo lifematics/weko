@@ -5260,7 +5260,17 @@ function decodeBase64(input) {
             }
             pushIncSearchList('https://idp.gakunin.nii.ac.jp/idp/shibboleth');
         }
-        if (wayf_additional_idps.length > 0) {
+      if (isAllowedType('https://idp.rdm.nii.ac.jp/idp/shibboleth', 'others') && isAllowedIdP('https://idp.rdm.nii.ac.jp/idp/shibboleth')) {
+        if (
+          "-" == "-" &&
+          typeof(wayf_default_idp) != "undefined" &&
+          wayf_default_idp == "https://idp.rdm.nii.ac.jp/idp/shibboleth"
+        ) {
+          dispDefault = 'GakuNin RDM IdP';
+        }
+        pushIncSearchList('https://idp.rdm.nii.ac.jp/idp/shibboleth');
+      }
+      if (wayf_additional_idps.length > 0) {
             var listcnt = inc_search_list.length;
 
             // Show additional IdPs in the order they are defined

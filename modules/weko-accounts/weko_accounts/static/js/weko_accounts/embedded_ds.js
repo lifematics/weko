@@ -5197,19 +5197,32 @@ function decodeBase64(input) {
             }
             pushIncSearchList('https://idp.kurume-it.ac.jp/idp/shibboleth');
         }
-        if (last_idp == 'https://idp.gakunin.nii.ac.jp/idp/shibboleth') {
-            dispDefault = 'GakuNin IdP';
+      if (last_idp == 'https://idp.gakunin.nii.ac.jp/idp/shibboleth') {
+        dispDefault = 'GakuNin IdP';
+      }
+      if (isAllowedType('https://idp.gakunin.nii.ac.jp/idp/shibboleth', 'others') && isAllowedIdP('https://idp.gakunin.nii.ac.jp/idp/shibboleth')) {
+        if (
+          "-" == "-" &&
+          typeof(wayf_default_idp) != "undefined" &&
+          wayf_default_idp == "https://idp.gakunin.nii.ac.jp/idp/shibboleth"
+        ) {
+          dispDefault = 'GakuNin IdP';
         }
-        if (isAllowedType('https://idp.gakunin.nii.ac.jp/idp/shibboleth', 'others') && isAllowedIdP('https://idp.gakunin.nii.ac.jp/idp/shibboleth')) {
-            if (
-                "-" == "-" &&
-                typeof(wayf_default_idp) != "undefined" &&
-                wayf_default_idp == "https://idp.gakunin.nii.ac.jp/idp/shibboleth"
-            ) {
-                dispDefault = 'GakuNin IdP';
-            }
-            pushIncSearchList('https://idp.gakunin.nii.ac.jp/idp/shibboleth');
+        pushIncSearchList('https://idp.gakunin.nii.ac.jp/idp/shibboleth');
+      }
+      if (last_idp == 'https://idp.rdm.nii.ac.jp/idp/shibboleth') {
+        dispDefault = 'GakuNin RDM IdP';
+      }
+      if (isAllowedType('https://idp.rdm.nii.ac.jp/idp/shibboleth', 'others') && isAllowedIdP('https://idp.rdm.nii.ac.jp/idp/shibboleth')) {
+        if (
+          "-" == "-" &&
+          typeof(wayf_default_idp) != "undefined" &&
+          wayf_default_idp == "https://idp.rdm.nii.ac.jp/idp/shibboleth"
+        ) {
+          dispDefault = 'GakuNin RDM IdP';
         }
+        pushIncSearchList('https://idp.rdm.nii.ac.jp/idp/shibboleth');
+      }
         if (wayf_additional_idps.length > 0) {
             var listcnt = inc_search_list.length;
 
