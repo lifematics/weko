@@ -44,7 +44,7 @@
             You can also override entityID on /Login query string, or in RequestMap/htaccess.
             -->
             <SSO entityID="https://idp.rdm.nii.ac.jp/idp/shibboleth"
-                 discoveryProtocol="SAMLDS" discoveryURL="https://ds.example.org/DS/WAYF">
+                 discoveryProtocol="SAMLDS" discoveryURL="https://test-ds.gakunin.nii.ac.jp/WAYF">
                 SAML2
             </SSO>
 
