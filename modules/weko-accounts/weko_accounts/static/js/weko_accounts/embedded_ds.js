@@ -6,7 +6,6 @@
 // ############################################################################
 
 // Declare all variables
-let wayf_URL = "https://test-ds.gakunin.nii.ac.jp/WAYF";
 let sp_domain = "https://weko-test3.cs.rcos.nii.ac.jp";
 let ds_domain = "https://test-ds.gakunin.nii.ac.jp";
 let ds_lib_domain = "https://ds.gakunin.nii.ac.jp";
@@ -17,6 +16,7 @@ let wayf_sp_samlDSURL = wayf_sp_handlerURL + "/DS";
 let wayf_sp_samlACURL = wayf_sp_handlerURL + '/SAML/POST';
 let wayf_return_url = sp_domain + "/loginproxy/getAuthInfo";
 let wayf_discofeed_url = ds_domain + "/DiscoFeed/PS0054JP";
+let wayf_URL = ds_domain + "/WAYF";
 
 let wayf_use_discovery_service = true;
 let wayf_use_small_logo = true;
@@ -1547,8 +1547,7 @@ function submitForm() {
   // User chose non-federation IdP
   // TODO: FIX windows error
   // 4 >= (8 - 3/4)
-  if (
-    i >= (submit_check_list.length - wayf_additional_idps.length)) {
+  if (i >= (submit_check_list.length - wayf_additional_idps.length)) {
     let redirect_url;
     // Store SAML domain cookie for this foreign IdP
     setCookie('_saml_idp', encodeBase64(NonFedEntityID), 100);
@@ -2077,7 +2076,7 @@ function decodeBase64(input) {
         dispDefault = wayf_idps[idp_id].name;
       }
       if (isAllowedType(idp_id, wayf_idps[idp_id].type) && isAllowedIdP(idp_id)) {
-        if (typeof(wayf_default_idp) != "undefined" && wayf_default_idp == idp_id) {
+        if (typeof (wayf_default_idp) != "undefined" && wayf_default_idp == idp_id) {
           dispDefault = wayf_idps[idp_id].name;
         }
         pushIncSearchList(idp_id);
