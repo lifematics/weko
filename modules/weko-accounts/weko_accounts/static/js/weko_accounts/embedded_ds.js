@@ -1462,12 +1462,12 @@ var wayf_idps = {
         search: ["https://idp.kurume-it.ac.jp/idp/shibboleth", "Kyushu", "Kurume Institute of Technology", "Kurume Institute of Technology", "久留米工業大学"],
         SAML1SSOurl: "https://idp.kurume-it.ac.jp/idp/profile/Shibboleth/SSO"
     },
-    "https://idp.gakunin.nii.ac.jp/idp/shibboleth": {
-        type: "others",
-        name: "GakuNin IdP",
-        search: ["https://idp.gakunin.nii.ac.jp/idp/shibboleth", "Others", "GakuNin IdP", "GakuNin IdP", "学認IdP"],
-        SAML1SSOurl: "https://idp.gakunin.nii.ac.jp/idp/profile/Shibboleth/SSO"
-    },
+  "https://idp.gakunin.nii.ac.jp/idp/shibboleth": {
+    type: "others",
+    name: "GakuNin IdP",
+    search: ["https://idp.gakunin.nii.ac.jp/idp/shibboleth", "Others", "GakuNin IdP", "GakuNin IdP", "学認IdP"],
+    SAML1SSOurl: "https://idp.gakunin.nii.ac.jp/idp/profile/Shibboleth/SSO"
+  },
   "https://idp.rdm.nii.ac.jp/idp/shibboleth": {
     type: "others",
     name: "GakuNin RDM IdP",
@@ -5197,32 +5197,19 @@ function decodeBase64(input) {
             }
             pushIncSearchList('https://idp.kurume-it.ac.jp/idp/shibboleth');
         }
-      if (last_idp == 'https://idp.gakunin.nii.ac.jp/idp/shibboleth') {
-        dispDefault = 'GakuNin IdP';
-      }
-      if (isAllowedType('https://idp.gakunin.nii.ac.jp/idp/shibboleth', 'others') && isAllowedIdP('https://idp.gakunin.nii.ac.jp/idp/shibboleth')) {
-        if (
-          "-" == "-" &&
-          typeof(wayf_default_idp) != "undefined" &&
-          wayf_default_idp == "https://idp.gakunin.nii.ac.jp/idp/shibboleth"
-        ) {
-          dispDefault = 'GakuNin IdP';
+        if (last_idp == 'https://idp.gakunin.nii.ac.jp/idp/shibboleth') {
+            dispDefault = 'GakuNin IdP';
         }
-        pushIncSearchList('https://idp.gakunin.nii.ac.jp/idp/shibboleth');
-      }
-      if (last_idp == 'https://idp.rdm.nii.ac.jp/idp/shibboleth') {
-        dispDefault = 'GakuNin RDM IdP';
-      }
-      if (isAllowedType('https://idp.rdm.nii.ac.jp/idp/shibboleth', 'others') && isAllowedIdP('https://idp.rdm.nii.ac.jp/idp/shibboleth')) {
-        if (
-          "-" == "-" &&
-          typeof(wayf_default_idp) != "undefined" &&
-          wayf_default_idp == "https://idp.rdm.nii.ac.jp/idp/shibboleth"
-        ) {
-          dispDefault = 'GakuNin RDM IdP';
+        if (isAllowedType('https://idp.rdm.nii.ac.jp/idp/shibboleth', 'others') && isAllowedIdP('https://idp.rdm.nii.ac.jp/idp/shibboleth')) {
+            if (
+                "-" == "-" &&
+                typeof(wayf_default_idp) != "undefined" &&
+                wayf_default_idp == "https://idp.rdm.nii.ac.jp/idp/shibboleth"
+            ) {
+                dispDefault = 'GakuNin IdP';
+            }
+            pushIncSearchList('https://idp.rdm.nii.ac.jp/idp/shibboleth');
         }
-        pushIncSearchList('https://idp.rdm.nii.ac.jp/idp/shibboleth');
-      }
         if (wayf_additional_idps.length > 0) {
             var listcnt = inc_search_list.length;
 
