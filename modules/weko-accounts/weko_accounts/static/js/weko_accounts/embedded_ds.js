@@ -6,6 +6,17 @@
 // ############################################################################
 
 // Declare all variables
+let wayf_URL = "https://test-ds.gakunin.nii.ac.jp/WAYF";
+let sp_domain = "https://weko-test3.cs.rcos.nii.ac.jp";
+let ds_domain = "https://test-ds.gakunin.nii.ac.jp";
+
+let wayf_sp_entityID = sp_domain + "/shibboleth-sp";
+let wayf_sp_handlerURL = sp_domain + "/Shibboleth.sso";
+let wayf_sp_samlDSURL = wayf_sp_handlerURL + "/DS";
+let wayf_sp_samlACURL = wayf_sp_handlerURL + '/SAML/POST';
+let wayf_return_url = sp_domain + "/loginproxy/getAuthInfo";
+let wayf_discofeed_url = ds_domain + "/DiscoFeed/PS0054JP";
+
 let wayf_use_discovery_service = true;
 let wayf_use_small_logo = true;
 let wayf_height = 'auto';
@@ -26,9 +37,7 @@ let wayf_show_remember_checkbox = true;
 let wayf_force_remember_for_session = false;
 let wayf_additional_idps = [];
 let wayf_sp_cookie_path = '';
-let wayf_list_height;
-let wayf_sp_samlDSURL;
-let wayf_sp_samlACURL;
+let wayf_list_height = '150px';
 let wayf_html = "";
 
 let wayf_hint_list = [];
@@ -42,21 +51,14 @@ let initdisp = 'Select the Home Organisation you are affiliated with';
 let dispDefault = '';
 let dispidp = '';
 let hiddenKeyText = '';
-let dropdown_up = 'https://test-ds.gakunin.nii.ac.jp/GakuNinDS/images/dropdown_up.png';
-let dropdown_down = 'https://test-ds.gakunin.nii.ac.jp/GakuNinDS/images/dropdown_down.png';
+let dropdown_up = ds_domain + '/GakuNinDS/images/dropdown_up.png';
+let dropdown_down = ds_domain + '/GakuNinDS/images/dropdown_down.png';
 let favorite_idp_group = "Most often used Home Organisations";
 let hint_idp_group = ' Hint! IdP';
 
 // Add some property for GUI spec
 let wayf_overwrite_submit_button_text = "ログイン";
 let wayf_overwrite_checkbox_label_text = "ブラウザ起動中は自動ログイン";
-
-let wayf_URL = "https://test-ds.gakunin.nii.ac.jp/WAYF";
-let sp_domain = "https://weko-test3.cs.rcos.nii.ac.jp";
-let wayf_sp_entityID = sp_domain + "/shibboleth-sp";
-let wayf_sp_handlerURL = sp_domain + "/Shibboleth.sso";
-let wayf_return_url = sp_domain + "/loginproxy/getAuthInfo";
-let wayf_discofeed_url = "https://test-ds.gakunin.nii.ac.jp/DiscoFeed/PS0054JP";
 
 let wayf_idps = {
   "https://shib-idp01.iic.hokudai.ac.jp/idp/shibboleth": {
@@ -1503,12 +1505,12 @@ let wayf_idps = {
 
 // Define functions
 function submitForm() {
-
   let NonFedEntityID;
   let idp_name = document.getElementById('keytext').value.toLowerCase();
   let chkFlg = false;
-  if (hiddenKeyText != '') idp_name = hiddenKeyText.toLowerCase();
-
+  if (hiddenKeyText != '') {
+    idp_name = hiddenKeyText.toLowerCase();
+  }
   if (inc_search_list.length > 0) {
     submit_check_list = inc_search_list;
   }
@@ -1518,7 +1520,6 @@ function submitForm() {
   if (hint_list.length > 0) {
     submit_check_list = hint_list.concat(submit_check_list);
   }
-
   for (let i = 0; i < submit_check_list.length; i++) {
     for (let j = 3, len2 = submit_check_list[i].length; j < len2; j++) {
       let list_idp_name = submit_check_list[i][j].toLowerCase();
@@ -1547,25 +1548,20 @@ function submitForm() {
   // 4 >= (8 - 3/4)
   if (
     i >= (submit_check_list.length - wayf_additional_idps.length)) {
-
     let redirect_url;
-
     // Store SAML domain cookie for this foreign IdP
     setCookie('_saml_idp', encodeBase64(NonFedEntityID), 100);
-
     // Redirect user to SP handler
     if (wayf_use_discovery_service) {
       redirect_url = wayf_sp_samlDSURL + (wayf_sp_samlDSURL.indexOf('?') >= 0 ? '&' : '?') + 'entityID=' +
         encodeURIComponent(NonFedEntityID) +
         '&target=' + encodeURIComponent(wayf_return_url);
-
       // Make sure the redirect always is being done in parent window
       if (window.parent) {
         window.parent.location = redirect_url;
       } else {
         window.location = redirect_url;
       }
-
     } else {
       redirect_url = wayf_sp_handlerURL + '?providerId=' +
         encodeURIComponent(NonFedEntityID) +
@@ -1577,9 +1573,7 @@ function submitForm() {
       } else {
         window.location = redirect_url;
       }
-
     }
-
     // If input type button is used for submit, we must return false
     return false;
   } else {
@@ -1609,9 +1603,7 @@ function pushIncSearchList(IdP) {
 
 function isAllowedType(IdP, type) {
   for (let i = 0; i <= wayf_hide_categories.length; i++) {
-
     if (wayf_hide_categories[i] == type || wayf_hide_categories[i] == "all") {
-
       for (let i = 0; i <= wayf_unhide_idps.length; i++) {
         // Show IdP if it has to be unhidden
         if (wayf_unhide_idps[i] == IdP) {
@@ -1622,30 +1614,24 @@ function isAllowedType(IdP, type) {
       return false;
     }
   }
-
   // Category was not hidden
   return true;
 }
 
 function isAllowedCategory(category) {
-
   if (!category || category == '') {
     return true;
   }
-
   for (let i = 0; i <= wayf_hide_categories.length; i++) {
-
     if (wayf_hide_categories[i] == category || wayf_hide_categories[i] == "all") {
       return false;
     }
   }
-
   // Category was not hidden
   return true;
 }
 
 function isAllowedIdP(IdP) {
-
   for (let i = 0; i <= wayf_hide_idps.length; i++) {
     if (wayf_hide_idps[i] == IdP) {
       return false;
@@ -1656,7 +1642,7 @@ function isAllowedIdP(IdP) {
 }
 
 function setCookie(c_name, value, expiredays) {
-  let exdate = new Date();
+  const exdate = new Date();
   exdate.setDate(exdate.getDate() + expiredays);
   document.cookie = c_name + "=" + escape(value) +
     ((expiredays == null) ? "" : "; expires=" + exdate.toGMTString()) +
@@ -1666,7 +1652,7 @@ function setCookie(c_name, value, expiredays) {
 function getCookie(check_name) {
   // First we split the cookie up into name/value pairs
   // Note: document.cookie only returns name=value, not the other components
-  let a_all_cookies = document.cookie.split(';');
+  const a_all_cookies = document.cookie.split(';');
   let a_temp_cookie = '';
   let cookie_name = '';
   let cookie_value = '';
@@ -1674,11 +1660,8 @@ function getCookie(check_name) {
   for (let i = 0; i < a_all_cookies.length; i++) {
     // now we'll split apart each name=value pair
     a_temp_cookie = a_all_cookies[i].split('=');
-
-
     // and trim left/right whitespace while we're at it
     cookie_name = a_temp_cookie[0].replace(/^\s+|\s+$/g, '');
-
     // if the extracted name matches passed check_name
     if (cookie_name == check_name) {
       // We need to handle case where cookie has no value but exists (no = sign, that is):
@@ -1692,7 +1675,6 @@ function getCookie(check_name) {
     a_temp_cookie = null;
     cookie_name = '';
   }
-
   return null;
 }
 
@@ -1700,33 +1682,27 @@ function getCookie(check_name) {
 function isCookie(check_name) {
   // First we split the cookie up into name/value pairs
   // Note: document.cookie only returns name=value, not the other components
-  let a_all_cookies = document.cookie.split(';');
+  const a_all_cookies = document.cookie.split(';');
   let a_temp_cookie = '';
   let cookie_name = '';
 
   for (let i = 0; i < a_all_cookies.length; i++) {
     // now we'll split apart each name=value pair
     a_temp_cookie = a_all_cookies[i].split('=');
-
     // and trim left/right whitespace while we're at it
     cookie_name = a_temp_cookie[0].replace(/^\s+|\s+$/g, '');
-
     // if the extracted name matches passed check_name
-
     if (cookie_name.search(check_name) >= 0) {
       return true;
     }
   }
-
   // Shibboleth session cookie has not been found
   return false;
 }
 
 function encodeBase64(input) {
-  let base64chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-  let output = "",
-    c1, c2, c3, e1, e2, e3, e4;
-
+  const base64chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  let output = "", c1, c2, c3, e1, e2, e3, e4;
   for (let i = 0; i < input.length;) {
     c1 = input.charCodeAt(i++);
     c2 = input.charCodeAt(i++);
@@ -1742,44 +1718,35 @@ function encodeBase64(input) {
     }
     output += base64chars.charAt(e1) + base64chars.charAt(e2) + base64chars.charAt(e3) + base64chars.charAt(e4);
   }
-
   return output;
 }
 
 function decodeBase64(input) {
-  let base64chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  const base64chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
   let output = "",
     chr1, chr2, chr3, enc1, enc2, enc3, enc4;
   let i = 0;
-
   // Remove all characters that are not A-Z, a-z, 0-9, +, /, or =
   let base64test = /[^A-Za-z0-9\+\/\=]/g;
   input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
-
   do {
     enc1 = base64chars.indexOf(input.charAt(i++));
     enc2 = base64chars.indexOf(input.charAt(i++));
     enc3 = base64chars.indexOf(input.charAt(i++));
     enc4 = base64chars.indexOf(input.charAt(i++));
-
     chr1 = (enc1 << 2) | (enc2 >> 4);
     chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
     chr3 = ((enc3 & 3) << 6) | enc4;
-
     output = output + String.fromCharCode(chr1);
-
     if (enc3 != 64) {
       output = output + String.fromCharCode(chr2);
     }
     if (enc4 != 64) {
       output = output + String.fromCharCode(chr3);
     }
-
     chr1 = chr2 = chr3 = "";
     enc1 = enc2 = enc3 = enc4 = "";
-
   } while (i < input.length);
-
   return output;
 }
 
@@ -1817,25 +1784,25 @@ function decodeBase64(input) {
   //     wayf_sp_cookie_path = '';
   // }
 
-  if ((typeof (wayf_list_height) != "number") || (wayf_list_height < 0)) {
-    wayf_list_height = '150px';
-  } else {
-    wayf_list_height += 'px';
-  }
+  // if ((typeof (wayf_list_height) != "number") || (wayf_list_height < 0)) {
+  //   wayf_list_height = '150px';
+  // } else {
+  //   wayf_list_height += 'px';
+  // }
 
   if (wayf_use_discovery_service == false && typeof (wayf_sp_handlerURL) == "undefined") {
     alert('The mandatory parameter \'wayf_sp_handlerURL\' is missing. Please add it as a javascript variable on this page.');
     config_ok = false;
   }
 
-  if (wayf_use_discovery_service == true && typeof (wayf_sp_samlDSURL) == "undefined") {
-    // Set to default DS handler
-    wayf_sp_samlDSURL = wayf_sp_handlerURL + "/DS";
-  }
+  // if (wayf_use_discovery_service == true && typeof (wayf_sp_samlDSURL) == "undefined") {
+  //   // Set to default DS handler
+  //   wayf_sp_samlDSURL = wayf_sp_handlerURL + "/DS";
+  // }
 
-  if (typeof (wayf_sp_samlACURL) == "undefined") {
-    wayf_sp_samlACURL = wayf_sp_handlerURL + '/SAML/POST';
-  }
+  // if (typeof (wayf_sp_samlACURL) == "undefined") {
+  //   wayf_sp_samlACURL = wayf_sp_handlerURL + '/SAML/POST';
+  // }
 
   // if (typeof(wayf_font_color) == "undefined") {
   //     wayf_font_color = 'black';
@@ -1918,7 +1885,7 @@ function decodeBase64(input) {
   //   typeof (wayf_most_used_idps) == "undefined" ||
   //   typeof (wayf_most_used_idps) != "object"
   // ) {
-  //   wayf_most_used_idps = new Array();
+  //   wayf_most_used_idps = [];
   // }
 
   // if (
@@ -1932,14 +1899,14 @@ function decodeBase64(input) {
   //   typeof (wayf_hide_categories) == "undefined" ||
   //   typeof (wayf_hide_categories) != "object"
   // ) {
-  //   wayf_hide_categories = new Array();
+  //   wayf_hide_categories = [];
   // }
   //
   // if (
   //   typeof (wayf_unhide_idps) == "undefined" ||
   //   typeof (wayf_unhide_idps) != "object"
   // ) {
-  //   wayf_unhide_idps = new Array();
+  //   wayf_unhide_idps = [];
   // }
 
   // Disable categories if IdPs are unhidden from hidden categories
@@ -1951,7 +1918,7 @@ function decodeBase64(input) {
   //   typeof (wayf_hide_idps) == "undefined" ||
   //   typeof (wayf_hide_idps) != "object"
   // ) {
-  //   wayf_hide_idps = new Array();
+  //   wayf_hide_idps = [];
   // }
 
   // if (
@@ -1994,9 +1961,11 @@ function decodeBase64(input) {
     wayf_hide_after_login &&
     user_logged_in
   ) {
-    writeHTML('<div id="wayf_div" style="background:' + wayf_background_color + ';border-style: solid;border-color: ' + wayf_border_color + ';border-width: 1px;padding: 10px;height: auto;width: ' + wayf_width + ';text-align: left;overflow: hidden;">');
+    writeHTML('<div id="wayf_div" style="background:' + wayf_background_color + ';border-style: solid;border-color: '
+      + wayf_border_color + ';border-width: 1px;padding: 10px;height: auto;width: ' + wayf_width + ';text-align: left;overflow: hidden;">');
   } else {
-    writeHTML('<div id="wayf_div" style="background:' + wayf_background_color + ';border-style: solid;border-color: ' + wayf_border_color + ';border-width: 1px;padding: 10px;height: ' + wayf_height + ';width: ' + wayf_width + ';text-align: left;">');
+    writeHTML('<div id="wayf_div" style="background:' + wayf_background_color + ';border-style: solid;border-color: '
+      + wayf_border_color + ';border-width: 1px;padding: 10px;height: ' + wayf_height + ';width: ' + wayf_width + ';text-align: left;">');
   }
 
 
@@ -2008,9 +1977,9 @@ function decodeBase64(input) {
 
     // Which size of the logo shall we display
     if (wayf_use_small_logo) {
-      writeHTML('<img id="wayf_logo" src="https://test-ds.gakunin.nii.ac.jp/GakuNinDS/images/gakunin-seal.png" alt="Federation Logo" style="border:0px">')
+      writeHTML('<img id="wayf_logo" src="' + ds_domain + '/GakuNinDS/images/gakunin-seal.png" alt="Federation Logo" style="border:0px">')
     } else {
-      writeHTML('<img id="wayf_logo" src="https://test-ds.gakunin.nii.ac.jp/GakuNinDS/images/gakunin.png" alt="Federation Logo" style="border:0px">')
+      writeHTML('<img id="wayf_logo" src="' + ds_domain + '/GakuNinDS/images/gakunin.png" alt="Federation Logo" style="border:0px">')
     }
 
     // Write footer of logo div
@@ -2024,22 +1993,25 @@ function decodeBase64(input) {
     wayf_hide_after_login &&
     user_logged_in
   ) {
-    writeHTML('<p id="wayf_intro_div" style="float:left;font-size:' + wayf_font_size + 'px;color:' + wayf_font_color + ';">' + wayf_logged_in_messsage + '</p>');
+    writeHTML('<p id="wayf_intro_div" style="float:left;font-size:' + wayf_font_size + 'px;color:'
+      + wayf_font_color + ';">' + wayf_logged_in_messsage + '</p>');
 
   } else {
     // Else draw embedded WAYF
 
     //Do we have to draw custom text? or any text at all?
     if (typeof (wayf_overwrite_intro_text) == "undefined") {
-      writeHTML('<label for="user_idp" id="wayf_intro_label" style="float:left; min-width:80px; font-size:' + wayf_font_size + 'px;color:' + wayf_font_color + ';margin-top: 5px;">Login with:');
+      writeHTML('<label for="user_idp" id="wayf_intro_label" style="float:left; min-width:80px; font-size:'
+        + wayf_font_size + 'px;color:' + wayf_font_color + ';margin-top: 5px;">Login with:');
     } else if (wayf_overwrite_intro_text != "") {
-      writeHTML('<label for="user_idp" id="wayf_intro_label" style="float:left; min-width:80px; font-size:' + wayf_font_size + 'px;color:' + wayf_font_color + ';margin-top: 5px;">' + wayf_overwrite_intro_text);
+      writeHTML('<label for="user_idp" id="wayf_intro_label" style="float:left; min-width:80px; font-size:'
+        + wayf_font_size + 'px;color:' + wayf_font_color + ';margin-top: 5px;">' + wayf_overwrite_intro_text);
     }
 
     // Get local cookie
     let saml_idp = getCookie('_saml_idp');
     let last_idp = '';
-    let last_idps = new Array();
+    let last_idps = [];
 
     if (saml_idp && saml_idp.length > 0) {
       last_idps = saml_idp.split('+')
@@ -2049,7 +2021,7 @@ function decodeBase64(input) {
     }
 
     if (last_idp == "" && safekind == 2) {
-//            writeHTML('<img src="https://test-ds.gakunin.nii.ac.jp/GakuNinDS/images/alert.gif" id="icon-alert" title="Alert SP!" style="vertical-align:text-bottom; border:0px; width:20px; height:20px;">');
+//            writeHTML('<img src="'+ds_domain+'/GakuNinDS/images/alert.gif" id="icon-alert" title="Alert SP!" style="vertical-align:text-bottom; border:0px; width:20px; height:20px;">');
     }
     writeHTML('</label>');
 
@@ -2071,14 +2043,14 @@ function decodeBase64(input) {
         '&amp;shire=' + encodeURIComponent(wayf_sp_samlACURL) +
         '&amp;target=' + encodeURIComponent(wayf_return_url);
 
-      form_start = '<form id="IdPList" name="IdPList" method="post" target="_parent" onSubmit="return submitForm()" action="' + wayf_authReq_URL + '&amp;time=1583392121' +
-        '">';
+      form_start = '<form id="IdPList" name="IdPList" method="post" target="_parent" onSubmit="return submitForm()" action="'
+        + wayf_authReq_URL + '&amp;time=1583392121">';
     }
 
-    writeHTML('<link rel="stylesheet" href="https://test-ds.gakunin.nii.ac.jp/GakuNinDS/incsearch/suggest.css" type="text/css" />');
-    writeHTML('<script type="text/javascript" src="https://test-ds.gakunin.nii.ac.jp/GakuNinDS/incsearch/jquery.js"></script>');
-    writeHTML('<script type="text/javascript" src="https://test-ds.gakunin.nii.ac.jp/GakuNinDS/incsearch/jquery.flickable.js"></script>');
-    writeHTML('<script type="text/javascript" src="https://test-ds.gakunin.nii.ac.jp/GakuNinDS/incsearch/suggest.js"></script>');
+    writeHTML('<link rel="stylesheet" href="' + ds_domain + '/GakuNinDS/incsearch/suggest.css" type="text/css" />');
+    writeHTML('<script type="text/javascript" src="' + ds_domain + '/GakuNinDS/incsearch/jquery.js"></script>');
+    writeHTML('<script type="text/javascript" src="' + ds_domain + '/GakuNinDS/incsearch/jquery.flickable.js"></script>');
+    writeHTML('<script type="text/javascript" src="' + ds_domain + '/GakuNinDS/incsearch/suggest.js"></script>');
 
     writeHTML(form_start);
     writeHTML('<input name="request_type" type="hidden" value="embedded">');
@@ -2104,7 +2076,7 @@ function decodeBase64(input) {
         dispDefault = wayf_idps[idp_id].name;
       }
       if (isAllowedType(idp_id, wayf_idps[idp_id].type) && isAllowedIdP(idp_id)) {
-        if (wayf_default_idp && wayf_default_idp == idp_id) {
+        if (typeof(wayf_default_idp) != "undefined" && wayf_default_idp == idp_id) {
           dispDefault = wayf_idps[idp_id].name;
         }
         pushIncSearchList(idp_id);
@@ -5243,7 +5215,7 @@ function decodeBase64(input) {
             wayf_additional_idps[i].entityID == last_idp
           ) {
             dispDefault = wayf_additional_idps[i].name;
-            inc_search_list[listcnt] = new Array();
+            inc_search_list[listcnt] = [];
             inc_search_list[listcnt][0] = wayf_additional_idps[i].entityID;
             inc_search_list[listcnt][1] = "From other federations";
             inc_search_list[listcnt][2] = wayf_additional_idps[i].name;
@@ -5257,14 +5229,14 @@ function decodeBase64(input) {
             wayf_additional_idps[i].entityID == wayf_default_idp
           ) {
             dispDefault = wayf_additional_idps[i].name;
-            inc_search_list[listcnt] = new Array();
+            inc_search_list[listcnt] = [];
             inc_search_list[listcnt][0] = wayf_additional_idps[i].entityID;
             inc_search_list[listcnt][1] = "From other federations";
             inc_search_list[listcnt][2] = wayf_additional_idps[i].name;
             inc_search_list[listcnt][3] = wayf_additional_idps[i].name;
             listcnt++;
           } else if (wayf_additional_idps[i].name) {
-            inc_search_list[listcnt] = new Array();
+            inc_search_list[listcnt] = [];
             inc_search_list[listcnt][0] = wayf_additional_idps[i].entityID;
             inc_search_list[listcnt][1] = "From other federations";
             inc_search_list[listcnt][2] = wayf_additional_idps[i].name;
@@ -5340,10 +5312,12 @@ function decodeBase64(input) {
 
       // Do we have to display custom text?
       if (typeof (wayf_overwrite_checkbox_label_text) == "undefined") {
-        writeHTML('<label for="wayf_remember_checkbox" id="wayf_remember_checkbox_label" style="min-width:80px; font-size:' + wayf_font_size + 'px;color:' + wayf_font_color + ';">Remember selection for this web browser session.</label>');
+        writeHTML('<label for="wayf_remember_checkbox" id="wayf_remember_checkbox_label" style="min-width:80px; font-size:'
+          + wayf_font_size + 'px;color:' + wayf_font_color + ';">Remember selection for this web browser session.</label>');
 
       } else if (wayf_overwrite_checkbox_label_text != "") {
-        writeHTML('<label for="wayf_remember_checkbox" id="wayf_remember_checkbox_label" style="min-width:80px; font-size:' + wayf_font_size + 'px;color:' + wayf_font_color + ';">' + wayf_overwrite_checkbox_label_text + '</label>');
+        writeHTML('<label for="wayf_remember_checkbox" id="wayf_remember_checkbox_label" style="min-width:80px; font-size:'
+          + wayf_font_size + 'px;color:' + wayf_font_color + ';">' + wayf_overwrite_checkbox_label_text + '</label>');
       }
     } else if (wayf_force_remember_for_session) {
       // Is the checkbox forced to be checked but hidden
