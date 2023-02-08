@@ -9,6 +9,7 @@
 let wayf_URL = "https://test-ds.gakunin.nii.ac.jp/WAYF";
 let sp_domain = "https://weko-test3.cs.rcos.nii.ac.jp";
 let ds_domain = "https://test-ds.gakunin.nii.ac.jp";
+let ds_lib_domain = "https://ds.gakunin.nii.ac.jp";
 
 let wayf_sp_entityID = sp_domain + "/shibboleth-sp";
 let wayf_sp_handlerURL = sp_domain + "/Shibboleth.sso";
@@ -2047,10 +2048,10 @@ function decodeBase64(input) {
         + wayf_authReq_URL + '&amp;time=1583392121">';
     }
 
-    writeHTML('<link rel="stylesheet" href="' + ds_domain + '/GakuNinDS/incsearch/suggest.css" type="text/css" />');
-    writeHTML('<script type="text/javascript" src="' + ds_domain + '/GakuNinDS/incsearch/jquery.js"></script>');
-    writeHTML('<script type="text/javascript" src="' + ds_domain + '/GakuNinDS/incsearch/jquery.flickable.js"></script>');
-    writeHTML('<script type="text/javascript" src="' + ds_domain + '/GakuNinDS/incsearch/suggest.js"></script>');
+    writeHTML('<link rel="stylesheet" href="' + ds_lib_domain + '/GakuNinDS/incsearch/suggest.css" type="text/css" />');
+    writeHTML('<script type="text/javascript" src="' + ds_lib_domain + '/GakuNinDS/incsearch/jquery.js"></script>');
+    writeHTML('<script type="text/javascript" src="' + ds_lib_domain + '/GakuNinDS/incsearch/jquery.flickable.js"></script>');
+    writeHTML('<script type="text/javascript" src="' + ds_lib_domain + '/GakuNinDS/incsearch/suggest.js"></script>');
 
     writeHTML(form_start);
     writeHTML('<input name="request_type" type="hidden" value="embedded">');
