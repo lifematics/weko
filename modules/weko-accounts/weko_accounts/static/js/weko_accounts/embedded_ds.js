@@ -13,8 +13,8 @@ let ds_lib_domain = "https://ds.gakunin.nii.ac.jp";
 let wayf_sp_entityID = sp_domain + "/shibboleth-sp";
 let wayf_sp_handlerURL = sp_domain + "/Shibboleth.sso";
 let wayf_sp_samlDSURL = wayf_sp_handlerURL + "/DS";
-let wayf_sp_samlACURL = wayf_sp_handlerURL + '/SAML/POST';
-let wayf_return_url = sp_domain + "/loginproxy/getAuthInfo";
+let wayf_sp_samlACURL = wayf_sp_handlerURL + "/SAML2/POST";
+let wayf_return_url = sp_domain + "/secure/login.php";
 let wayf_discofeed_url = ds_domain + "/DiscoFeed/PS0054JP";
 let wayf_URL = ds_domain + "/WAYF";
 
