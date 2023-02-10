@@ -132,7 +132,7 @@ var wayf_show_categories =  true;
 // This will implicitely be set to wayf_sp_samlDSURL = wayf_sp_handlerURL + "/DS";
 // [Optional, if wayf_use_discovery_service = true
 //  or if wayf_additional_idps is not empty, default: commented out]
-// var wayf_sp_samlDSURL = wayf_sp_handlerURL + "/Login";
+var wayf_sp_samlDSURL = wayf_sp_handlerURL + "/SAML2/POST";
 
 // Default IdP to preselect when central WAYF couldn't guess IdP either
 // This is usually the case the first time ever a user accesses a resource
