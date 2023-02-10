@@ -28,6 +28,10 @@ embedded_wayf_config_js = Bundle(
     output="gen/weko_accounts_embedded_wayf_config.%(version)s.js",
 )
 
+embedded_wayf_custom = Bundle(
+    'css/weko_accounts/wayf_custom.css',
+    output="gen/weko_accounts_wayf_custom.%(version)s.css",
+)
 embedded_ds_P1_js = Bundle(
     'js/weko_accounts/embedded_ds.js',
     output="gen/weko_accounts_embedded_ds_1.%(version)s.js",
