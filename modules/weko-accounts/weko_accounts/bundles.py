@@ -23,9 +23,9 @@
 from flask_assets import Bundle
 from invenio_assets import NpmBundle
 
-embedded_wayf_custom = Bundle(
-    'css/weko_accounts/wayf_custom.css',
-    output="gen/weko_accounts_wayf_custom.%(version)s.css",
+embedded_wayf_config_js = Bundle(
+    'js/weko_accounts/embedded-wayf_config.js',
+    output="gen/weko_accounts_embedded_wayf_config.%(version)s.js",
 )
 
 embedded_ds_P1_js = Bundle(
