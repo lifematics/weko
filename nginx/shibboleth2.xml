@@ -68,6 +68,11 @@
 
             <!-- JSON feed of discovery information. -->
             <Handler type="DiscoveryFeed" Location="/DiscoFeed"/>
+            <SessionInitiator type="Chaining" Location="/DS" isDefault="true" id="DS">
+                <SessionInitiator type="SAML2" template="bindingTemplate.html"/>
+                <SessionInitiator type="Shib1"/>
+                <SessionInitiator type="SAMLDS" URL="https://test-ds.gakunin.nii.ac.jp/WAYF"/>
+            </SessionInitiator>
         </Sessions>
 
         <!--
