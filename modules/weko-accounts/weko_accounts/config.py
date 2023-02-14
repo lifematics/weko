@@ -39,13 +39,13 @@ WEKO_ACCOUNTS_SECURITY_REGISTER_USER_TEMPLATE = 'weko_accounts/register_user.htm
 """Default template for user registration."""
 
 WEKO_ACCOUNTS_SECURITY_LOGIN_SHIB_USER_TEMPLATE = 'weko_accounts/' \
-    'login_shibuser_pattern_1.html'
+    'login_shibuser.html'
 """Shibboleth template for login."""
 
-WEKO_ACCOUNTS_SECURITY_LOGIN_SHIB_INST_TEMPLATE = 'weko_accounts/' \
-    'login_shibuser_pattern_2.html'
-"""Shibboleth template 2 for login."""
-
+# WEKO_ACCOUNTS_SECURITY_LOGIN_SHIB_INST_TEMPLATE = 'weko_accounts/' \
+#     'login_shibuser_pattern_2.html'
+# """Shibboleth template 2 for login."""
+#
 WEKO_ACCOUNTS_CONFIRM_USER_TEMPLATE = 'weko_accounts/confirm_user.html'
 """Default template for login."""
 

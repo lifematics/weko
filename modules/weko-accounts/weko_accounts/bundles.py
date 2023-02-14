@@ -32,22 +32,22 @@ embedded_wayf_custom = Bundle(
     'css/weko_accounts/wayf_custom.css',
     output="gen/weko_accounts_wayf_custom.%(version)s.css",
 )
-embedded_ds_P1_js = Bundle(
-    'js/weko_accounts/embedded_ds.js',
-    output="gen/weko_accounts_embedded_ds_1.%(version)s.js",
-)
-
-embedded_ds_P2_js = Bundle(
-    'js/weko_accounts/embedded_ds_2.js',
-    output="gen/weko_accounts_embedded_ds_2.%(version)s.js",
-)
-
-embedded_ds_multi_language_js = Bundle(
-    'js/weko_accounts/change_translation_embedded.js',
-    output="gen/weko_accounts_embedded_ds_multi_language.%(version)s.js",
-)
-
-suggest_js = NpmBundle(
-    'js/weko_accounts/suggest.js',
-    output="gen/weko_accounts_suggest.js",
-)
+# embedded_ds_P1_js = Bundle(
+#     'js/weko_accounts/embedded_ds.js',
+#     output="gen/weko_accounts_embedded_ds_1.%(version)s.js",
+# )
+#
+# embedded_ds_P2_js = Bundle(
+#     'js/weko_accounts/embedded_ds_2.js',
+#     output="gen/weko_accounts_embedded_ds_2.%(version)s.js",
+# )
+#
+# embedded_ds_multi_language_js = Bundle(
+#     'js/weko_accounts/change_translation_embedded.js',
+#     output="gen/weko_accounts_embedded_ds_multi_language.%(version)s.js",
+# )
+#
+# suggest_js = NpmBundle(
+#     'js/weko_accounts/suggest.js',
+#     output="gen/weko_accounts_suggest.js",
+# )

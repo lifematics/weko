@@ -117,11 +117,11 @@ msgstr "属性値が不正です。"
 msgid "Invalid attribute."
 msgstr "ログインに失敗しました。"
 
-#: weko_accounts/templates/weko_accounts/login_shibuser_pattern_1.html
+#: weko_accounts/templates/weko_accounts/login_shibuser.html
 msgid "Institutional Login for institutions in Japan."
 msgstr "所属機関のIdPでログインする方"
 
-#: weko_accounts/templates/weko_accounts/login_shibuser_pattern_1.html
+#: weko_accounts/templates/weko_accounts/login_shibuser.html
 msgid "Users who belongs to institution outside Japan, please choose your institution's location."
 msgstr "海外機関所属で、機関のIdPでログインする方は地域を選択してください。"
 
@@ -129,14 +129,14 @@ msgstr "海外機関所属で、機関のIdPでログインする方は地域を
 msgid "Select Institution"
 msgstr "所属機関の選択"
 
-msgid "login_pattern_2_description_header"
-msgstr "WEKO3を利用するため、所属機関で認証する必要があります。所属機関を選択してください。<br>※このページを表示して時間が経過している場合は、再読み込みしてから所属機関を選択してください。<br>正しいページに戻れない場合があります。"
+#msgid "login_pattern_2_description_header"
+#msgstr "WEKO3を利用するため、所属機関で認証する必要があります。所属機関を選択してください。<br>※このページを表示して時間が経過している場合は、再読み込みしてから所属機関を選択してください。<br>正しいページに戻れない場合があります。"
 
 #~ msgid "%(module_name)s"
 #~ msgstr ""
 
-msgid "Back to Top Page"
-msgstr "トップページに戻る"
+#msgid "Back to Top Page"
+#msgstr "トップページに戻る"
 
-msgid "Create a New Account"
-msgstr "アカウントの登録"
+#msgid "Create a New Account"
+#msgstr "アカウントの登録"

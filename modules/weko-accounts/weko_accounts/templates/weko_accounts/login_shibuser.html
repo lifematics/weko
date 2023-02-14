@@ -33,7 +33,11 @@ details.
       {% assets "weko_accounts_embedded_wayf_config_js" %}
       <script src="{{ ASSET_URL }}"></script>
       {% endassets %}
-      <script src="https://test-ds.gakunin.nii.ac.jp/WAYF/embedded-wayf.js"></script>
+      <script type="text/javascript" charset="UTF-8">
+      document.write('<script type="text/javascript" src="' + wayf_URL + '/embedded-wayf.js?' + (new Date().getTime()) + '"></script>');
+      </script>
+<!--      <script src="https://test-ds.gakunin.nii.ac.jp/WAYF/embedded-wayf.js">-->
+      </script>
       <!--            {% assets "weko_accounts_embedded_ds_P1_js" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}-->
       <!--            <div class="wayf-text-des text-left">-->
       <!--                <br>-->
