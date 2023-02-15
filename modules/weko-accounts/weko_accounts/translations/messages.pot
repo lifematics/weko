@@ -127,12 +127,3 @@ msgstr "Users who belongs to institution outside Japan, please choose your insti
 #: weko_accounts/templates/weko_accounts/login_shibuser_pattern_2.html
 msgid "Select Institution"
 msgstr ""
-
-#msgid "login_pattern_2_description_header"
-#msgstr ""
-
-#msgid "Back to Top Page"
-#msgstr ""
-
-#msgid "Create a New Account"
-#msgstr ""
